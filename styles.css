@@ -41,6 +41,15 @@ body {
   line-height: 1.5;
 }
 
+/* Lucide Icons sizing */
+svg.lucide {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
@@ -390,7 +399,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   flex-direction: column;
   padding: 24px;
   gap: 24px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .dashboard-header {
@@ -638,7 +647,14 @@ table {
   border-collapse: collapse;
   text-align: left;
   font-size: 0.88rem;
+  table-layout: fixed;
 }
+
+#leadsTable th:nth-child(1), #leadsTable td:nth-child(1) { width: 25%; }
+#leadsTable th:nth-child(2), #leadsTable td:nth-child(2) { width: 15%; }
+#leadsTable th:nth-child(3), #leadsTable td:nth-child(3) { width: 35%; }
+#leadsTable th:nth-child(4), #leadsTable td:nth-child(4) { width: 15%; }
+#leadsTable th:nth-child(5), #leadsTable td:nth-child(5) { width: 10%; text-align: right; }
 
 thead th {
   background: rgba(255, 255, 255, 0.02);
@@ -780,7 +796,7 @@ td {
 }
 
 /* Responsive adjustment */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .app-container {
     flex-direction: column;
     overflow-y: auto;

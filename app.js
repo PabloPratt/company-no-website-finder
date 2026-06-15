@@ -379,6 +379,9 @@ function updateDashboard() {
   updateStats();
   updateMapMarkers();
   renderTable();
+  if (state.map) {
+    state.map.invalidateSize();
+  }
 }
 
 function updateStats() {
