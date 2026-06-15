@@ -4,6 +4,13 @@ const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
 const OVERPASS_URL = "https://overpass-api.de/api/interpreter";
 
 const CATEGORY_QUERIES = {
+  "all": [
+    ["shop", null],
+    ["craft", null],
+    ["office", null],
+    ["amenity", "restaurant"],
+    ["amenity", "cafe"]
+  ],
   "auto": [
     ["shop", "car_repair"],
     ["shop", "car"],
@@ -110,6 +117,26 @@ function bindEvents() {
   els.limitSlider.addEventListener("input", (e) => {
     els.limitVal.textContent = e.target.value;
   });
+
+  // Handle category checkboxes logic: "all" mutually excludes others
+  const allCb = document.querySelector("input[name='category'][value='all']");
+  const otherCbs = Array.from(document.querySelectorAll("input[name='category']:not([value='all'])"));
+  
+  if (allCb) {
+    allCb.addEventListener("change", () => {
+      if (allCb.checked) {
+        otherCbs.forEach(cb => cb.checked = false);
+      }
+    });
+    
+    otherCbs.forEach(cb => {
+      cb.addEventListener("change", () => {
+        if (cb.checked) {
+          allCb.checked = false;
+        }
+      });
+    });
+  }
 
   // Search form submit
   els.searchForm.addEventListener("submit", async (e) => {
