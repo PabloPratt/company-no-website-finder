@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+leads*.csv
+leads*.json
+sample-leads.csv

@@ -1,0 +1,13 @@
+{
+  "name": "company-no-website-finder",
+  "version": "1.0.0",
+  "description": "Find businesses that appear not to have a website using free public sources.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
