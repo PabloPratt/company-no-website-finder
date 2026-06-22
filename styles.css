@@ -41,6 +41,38 @@ body {
   line-height: 1.5;
 }
 
+/* Ambient Background Blobs */
+.blob-bg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  z-index: 0;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.blob-1 {
+  top: 5%;
+  left: 15%;
+  width: 400px;
+  height: 400px;
+  background: #00f2fe;
+}
+.blob-2 {
+  bottom: 10%;
+  right: 5%;
+  width: 500px;
+  height: 500px;
+  background: #8a2be2;
+}
+.blob-3 {
+  top: 45%;
+  left: 45%;
+  width: 300px;
+  height: 300px;
+  background: #3b82f6;
+  opacity: 0.05;
+}
+
 /* Lucide Icons sizing */
 svg.lucide {
   width: 16px;
@@ -184,43 +216,70 @@ svg.lucide {
   color: var(--text-muted);
 }
 
-/* Category Pill Selectors */
+/* Category Card Selectors */
 .categories-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .checkbox-pill {
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--panel-border);
+  color: var(--text-secondary);
+  transition: var(--transition);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .checkbox-pill input {
   display: none;
 }
 
-.checkbox-pill span {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--panel-border);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+.checkbox-pill i, .checkbox-pill svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  stroke-width: 1.8px;
   transition: var(--transition);
 }
 
-.checkbox-pill input:checked + span {
-  background: rgba(0, 242, 254, 0.1);
-  border-color: #00f2fe;
-  color: #00f2fe;
+.checkbox-pill span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.checkbox-pill:hover span {
+/* modern :has selector to light up card on check */
+.checkbox-pill:has(input:checked) {
+  background: rgba(0, 242, 254, 0.06);
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.1), inset 0 0 10px rgba(0, 242, 254, 0.05);
+}
+
+.checkbox-pill:has(input:checked) i, .checkbox-pill:has(input:checked) svg {
+  color: #00f2fe;
+  transform: scale(1.1);
+}
+
+.checkbox-pill:hover {
+  background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.15);
   color: var(--text-primary);
+}
+
+.checkbox-pill:hover i, .checkbox-pill:hover svg {
+  color: var(--text-secondary);
 }
 
 /* Slider */
@@ -507,6 +566,41 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .map-container {
   flex-grow: 1;
   background: #0d121d;
+}
+
+/* Custom Neon Map Pin markers */
+.custom-glow-pin {
+  position: relative;
+}
+
+.marker-pin-glow {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 242, 254, 0.4);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: markerPulse 2s infinite ease-in-out;
+}
+
+.marker-pin-dot {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #00f2fe;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f2fe;
+}
+
+@keyframes markerPulse {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 0.2; }
+  100% { transform: scale(0.6); opacity: 0.8; }
 }
 
 .map-hint {

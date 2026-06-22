@@ -399,7 +399,14 @@ function updateMapMarkers() {
   state.markerGroup.clearLayers();
   
   state.filteredLeads.forEach(lead => {
-    const marker = L.marker([lead.lat, lead.lon]);
+    const customIcon = L.divIcon({
+      className: "custom-glow-pin",
+      html: `<div class="marker-pin-glow"></div><div class="marker-pin-dot"></div>`,
+      iconSize: [20, 20],
+      iconAnchor: [10, 10]
+    });
+    
+    const marker = L.marker([lead.lat, lead.lon], { icon: customIcon });
     
     // Popup HTML
     const place = els.placeInput.value.trim();
